@@ -1,0 +1,107 @@
+{
+ "keyword": "staking weth",
+ "h1": "Staking WETH",
+ "brand": "Lido",
+ "niche": "stake",
+ "verb": "Stake",
+ "title": "Staking WETH - Open Lido App",
+ "meta_description": "staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.",
+ "palette": {
+  "mode": "light",
+  "bg": "#FFFFFF",
+  "accent": "#00A3FF",
+  "ink": "#273852"
+ },
+ "hero_h2": "Turn wrapped ether into liquid staked ETH",
+ "hero_lead": "staking weth starts by unwrapping to ETH, then using Lido's official app to mint stETH while keeping a liquid Ethereum position.",
+ "badge": "Ethereum",
+ "widget": {
+  "from": "WETH",
+  "from_net": "Ethereum",
+  "to": "stETH",
+  "to_net": "Ethereum",
+  "action": "Open Lido App"
+ },
+ "trust": [
+  "Ethereum mainnet",
+  "WETH unwraps 1:1",
+  "stETH receipt token"
+ ],
+ "what_is": "Lido is an Ethereum liquid staking protocol: WETH holders unwrap to native ETH, stake through the official app, and receive stETH as the liquid staking token. <a href=\"https://ethereum.org/wrapped-eth/\">Ethereum.org</a> describes WETH as an ERC-20 representation of ETH redeemable back to ETH.",
+ "how": [
+  {
+   "t": "Prepare WETH",
+   "d": "Use Ethereum mainnet WETH and keep native ETH available for gas."
+  },
+  {
+   "t": "Unwrap first",
+   "d": "Convert WETH back to ETH through a trusted wallet or WETH contract route, since Lido staking uses ETH as the input."
+  },
+  {
+   "t": "Stake in Lido",
+   "d": "Open stake.lido.fi, connect your wallet, enter the ETH amount, and review the transaction before signing."
+  },
+  {
+   "t": "Receive stETH",
+   "d": "After the stake transaction settles, stETH appears in your wallet and can be held, used in DeFi, or withdrawn through Lido's withdrawal flow."
+  }
+ ],
+ "points": [
+  {
+   "h": "Built around ETH",
+   "p": "The clean route is WETH to ETH to stETH; that keeps the action aligned with Ethereum's native staking asset instead of assuming a direct WETH deposit path."
+  },
+  {
+   "h": "Liquid staking output",
+   "p": "Lido mints stETH for deposited ETH, so the position remains tokenized instead of requiring you to run validator infrastructure; read the <a href=\"https://docs.lido.fi/\">Lido docs</a> for protocol details."
+  },
+  {
+   "h": "Domain-first routing",
+   "p": "Use stake.lido.fi for the app path, check wallet prompts carefully, and avoid lookalike domains before signing any transaction."
+  }
+ ],
+ "eeat": [
+  {
+   "text": "Ethereum staking overview",
+   "url": "https://ethereum.org/staking/"
+  },
+  {
+   "text": "Wrapped Ether guide",
+   "url": "https://ethereum.org/wrapped-eth/"
+  },
+  {
+   "text": "Lido docs",
+   "url": "https://docs.lido.fi/"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I stake WETH directly with Lido?",
+   "a": "<p>Lido's staking widget is built for ETH deposits. For WETH, unwrap to ETH first, then stake ETH in the official app to receive stETH.</p>",
+   "open": true
+  },
+  {
+   "q": "What does staking WETH mean in practice?",
+   "a": "<p>It usually means converting wrapped ether back to native ETH and then using a liquid staking protocol, because Ethereum validators stake ETH, not ERC-20 WETH.</p>",
+   "open": false
+  },
+  {
+   "q": "Do I need ETH for gas when using WETH?",
+   "a": "<p>Yes. Ethereum gas is paid in native ETH, so keep some ETH in the wallet before unwrapping, staking, or withdrawing.</p>",
+   "open": false
+  },
+  {
+   "q": "Where can I verify WETH before staking?",
+   "a": "<p>Use the <a href=\"https://ethereum.org/wrapped-eth/\">Wrapped Ether guide</a> and confirm the connected app domain before signing any transaction.</p>",
+   "open": false
+  },
+  {
+   "q": "What risks matter before staking WETH?",
+   "a": "<p>Risks include smart contract risk, validator penalties, changing rewards, liquidity-token market price risk, and user mistakes such as signing on a spoofed domain.</p>",
+   "open": false
+  }
+ ],
+ "official_url": "https://stake.lido.fi/",
+ "official_domain": "stake.lido.fi",
+ "footer_note": "Not the official Lido app; verify stake.lido.fi before connecting; educational only, not financial advice."
+}
