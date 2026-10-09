@@ -1,0 +1,3 @@
+# Staking WETH
+
+Staking WETH isn't done directly — WETH is an ERC-20, not a native staking asset. Learn the two real paths: unwrap to ETH and stake natively or via an LST, or put WETH to work in Aave lending and liquidity pools. Compare yield, risk and timing.
