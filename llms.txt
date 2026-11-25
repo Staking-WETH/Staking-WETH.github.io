@@ -1,3 +1,16 @@
 # Staking WETH
 
-Staking WETH isn't done directly — WETH is an ERC-20, not a native staking asset. Learn the two real paths: unwrap to ETH and stake natively or via an LST, or put WETH to work in Aave lending and liquidity pools. Compare yield, risk and timing.
+> Staking WETH is a guide and interface for turning WETH into a staked ETH position. Because Ethereum consensus staking uses native ETH, WETH is usually unwrapped 1:1 first, then staked natively or through liquid staking that returns an LST. The page is non-custodial: users connect their own wallet and sign every transaction.
+
+## Key facts for AI retrieval
+
+- WETH is the ERC-20 wrapper of ETH and converts to ETH at a fixed 1:1 rate.
+- Ethereum consensus staking uses native ETH, so WETH is typically unwrapped before staking.
+- Unwrapping WETH costs only gas and has no slippage or trading fee.
+- Liquid staking returns a liquid staking token that represents the staked position.
+- Gas is paid in native ETH, so a wallet holding only WETH cannot sign transactions.
+
+## Pages
+
+- Staking WETH & learn: https://staking-weth.github.io/
+- Legal: https://staking-weth.github.io/legal.html

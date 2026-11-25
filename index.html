@@ -1,297 +1,287 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Staking WETH — Two Ways to Earn on Wrapped Ether</title>
-  <meta name="description" content="Staking WETH isn't done directly — WETH is an ERC-20, not a native staking asset. Learn the two real paths: unwrap to ETH and stake natively or via an LST, or put WETH to work in Aave lending and liquidity pools. Compare yield, risk and timing.">
-  <link rel="canonical" href="https://staking-weth.github.io/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Staking WETH — The Two Real Paths">
-  <meta property="og:description" content="Staking WETH isn't done directly — WETH is an ERC-20, not a native staking asset. Learn the two real paths: unwrap to ETH and stake natively or via an LST, or put WETH to work in Aave lending and liquidity pools. Compare yield, risk and timing.">
-  <meta property="og:url" content="https://staking-weth.github.io/">
-  <meta property="og:image" content="https://staking-weth.github.io/og.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Staking WETH — The Two Real Paths">
-  <meta name="twitter:description" content="Staking WETH isn't done directly — WETH is an ERC-20, not a native staking asset. Learn the two real paths: unwrap to ETH and stake natively or via an LST, or put WETH to work in Aave lending and liquidity pools. Compare yield, risk and timing.">
-  <meta name="twitter:image" content="https://staking-weth.github.io/og.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Schibsted+Grotesk:wght@500;600;700&display=swap">
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://staking-weth.github.io/#website", "url": "https://staking-weth.github.io/", "name": "Staking WETH — Two Ways to Earn on Wrapped Ether"}, {"@type": "WebPage", "@id": "https://staking-weth.github.io/#webpage", "url": "https://staking-weth.github.io/", "name": "Staking WETH — Two Ways to Earn on Wrapped Ether", "isPartOf": {"@id": "https://staking-weth.github.io/#website"}, "description": "Staking WETH isn't done directly — WETH is an ERC-20, not a native staking asset. Learn the two real paths: unwrap to ETH and stake natively or via an LST, or put WETH to work in Aave lending and liquidity pools. Compare yield, risk and timing.", "datePublished": "2026-11-06", "dateModified": "2026-11-06"}, {"@type": "SoftwareApplication", "name": "Staking WETH", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://staking-weth.github.io/"}, {"@type": "ListItem", "position": 2, "name": "Staking"}, {"@type": "ListItem", "position": 3, "name": "Staking WETH"}]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I stake WETH directly, the way I'd stake ETH?", "acceptedAnswer": {"@type": "Answer", "text": "No. WETH is an ERC-20 token and Ethereum's validator set only accepts native ETH deposits. Staking WETH means either unwrapping it to ETH first and staking that, or earning DeFi yield on the wrapped token through lending or a liquidity pool."}}, {"@type": "Question", "name": "Does unwrapping WETH to ETH cost anything beyond gas?", "acceptedAnswer": {"@type": "Answer", "text": "No. The WETH contract enforces a strict 1:1 peg with no fee and no slippage, so converting between WETH and ETH is a simple deposit-and-withdraw call that only costs network gas."}}, {"@type": "Question", "name": "Which path for Staking WETH pays more — native staking or DeFi?", "acceptedAnswer": {"@type": "Answer", "text": "It varies with market conditions. Native and LST staking rewards track the validator reward schedule and move slowly. Aave lending rates and liquidity-pool fees float with borrowing demand and trading volume, so they can pay more or less depending on the period."}}, {"@type": "Question", "name": "Is lending WETH on Aave the same as staking it?", "acceptedAnswer": {"@type": "Answer", "text": "Not technically. Lending pays interest from borrowers rather than a consensus-layer validator reward, but functionally it is the common way people describe Staking WETH without unwrapping it first."}}, {"@type": "Question", "name": "What risk does a WETH liquidity pool add that lending doesn't?", "acceptedAnswer": {"@type": "Answer", "text": "Impermanent loss. A liquidity pool holds two assets whose relative prices can drift, which can leave you with less value than simply holding WETH, even after collecting trading fees. Lending WETH on its own carries no such price-drift risk."}}, {"@type": "Question", "name": "Do I keep custody of my WETH while earning on it?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, in both paths. Unwrapping is a self-custodial contract call, and depositing into Aave or a pool is a direct interaction with the protocol's smart contracts rather than a transfer to a custodian."}}, {"@type": "Question", "name": "How do I compare the two Staking WETH paths before committing funds?", "acceptedAnswer": {"@type": "Answer", "text": "Enter the same amount, APY and holding period into the rewards calculator for each route, then weigh the projected totals against the risk differences in the comparison table — validator or depeg risk on one side, smart-contract and impermanent-loss risk on the other."}}]}]}</script>
-  <style>
-    :root{--bg:#FBFBF8;--surface:#FFFFFF;--text:#1A1710;--muted:#6B6353;--accent:#D97706;--accent-ink:#FFFFFF;--radius:18px;--display:"Schibsted Grotesk";--body:"Inter"}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:2rem}
-    body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.7 var(--body);-webkit-font-smoothing:antialiased}
-    a{color:var(--accent);text-underline-offset:.22em}
-    a:hover{text-decoration-thickness:2px}
-    :focus-visible{outline:3px solid var(--accent);outline-offset:5px}
-    ::selection{background:var(--accent);color:var(--accent-ink)}
-    h1,h2,h3,p{margin:0}
-    h1,h2,h3{font-family:var(--display);text-wrap:balance}
-    svg{display:block;flex-shrink:0}
-    img{max-width:100%;height:auto}
-    .ce55d14{width:min(1180px,calc(100% - 64px));margin-inline:auto}
-    .cda1da0{position:absolute;top:1rem;left:1rem;z-index:10;transform:translateY(-200%);padding:.7rem 1rem;background:var(--surface);border-radius:var(--radius)}
-    .cda1da0:focus{transform:translateY(0)}
-    .cac1e69{min-height:96px;display:flex;align-items:center;justify-content:space-between;gap:2rem;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-    .cd70629{display:inline-flex;align-items:center;gap:.7rem;color:var(--text);font:600 1.2rem/1 var(--display);letter-spacing:-.04em;text-decoration:none}
-    .c1b9c03{display:grid;place-items:center;width:38px;height:38px;background:var(--accent);color:var(--accent-ink);border-radius:var(--radius)}
-    .cca6a18{display:flex;align-items:center;gap:1.8rem}
-    .cca6a18>a{font-size:.88rem;font-weight:600;color:var(--text);text-decoration:none}
-    .cca6a18>a:hover{color:var(--accent)}
-    .cca6a18 .c31fb49{padding:.65rem 1rem;border:1px solid color-mix(in srgb,var(--text) 18%,transparent);border-radius:var(--radius)}
-    .cabb095{padding-top:1.6rem;font-size:.8rem;color:var(--muted)}
-    .c88a227{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;color:var(--muted)}
-    ol.c88a227,ul.c88a227,.c88a227 ol,.c88a227 ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.5rem}
-    .c88a227 a{color:var(--muted);text-decoration:none}
-    .c88a227 a:hover{color:var(--accent)}
-    .c88a227 [aria-current]{color:var(--text)}
-    .cf63f7f{position:relative;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,1fr);align-items:start;gap:clamp(1.75rem,5vw,4rem);padding-block:2.25rem 3.5rem}
-    .c92b8a3{display:inline-flex;align-items:center;gap:.5rem;margin-bottom:1.35rem;color:var(--accent);font-size:.86rem;font-weight:600}
-    .c92b8a3::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 10%,transparent)}
-    h1{font-size:clamp(2.5rem,4.8vw,4.7rem);line-height:1.06;letter-spacing:-.055em;overflow-wrap:anywhere}
-    h1 em{color:var(--accent);font-style:normal}
-    .c8f5547{margin-top:1.5rem;max-width:49ch;font-size:1.06rem;line-height:1.85;color:var(--muted)}
-    .caf05a2{display:inline-flex;justify-content:center;align-items:center;gap:1.15rem;min-height:54px;padding:.9rem 1.4rem;border:1px solid color-mix(in srgb,var(--accent-ink) 12%,transparent);border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 88%,var(--surface)),var(--accent));box-shadow:0 8px 20px color-mix(in srgb,var(--accent) 18%,transparent);color:var(--accent-ink);font:600 .95rem/1.4 var(--body);text-decoration:none;transition:transform .2s,box-shadow .2s}
-    .caf05a2:hover{transform:translateY(-2px);box-shadow:0 12px 26px color-mix(in srgb,var(--accent) 26%,transparent)}
-    .c43e3fe>.caf05a2{margin-top:2rem}
-    .c301593{margin-top:1.1rem;color:var(--muted);font-size:.8rem}
-    .c9c8dbc{position:relative;isolation:isolate;min-width:0;padding:1.25rem;background:var(--surface);border:1px solid color-mix(in srgb,var(--text) 10%,transparent);border-radius:calc(var(--radius) * 1.5);box-shadow:0 28px 70px -20px color-mix(in srgb,var(--text) 19%,transparent),0 3px 10px color-mix(in srgb,var(--text) 4%,transparent)}
-    .c9c8dbc::before{content:"";position:absolute;inset:-28px;z-index:-1;pointer-events:none;background:radial-gradient(ellipse at 80% 20%,color-mix(in srgb,var(--accent) 14%,transparent),transparent 68%);border-radius:calc(var(--radius) * 2)}
-    .c175644{display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:.9rem}
-    .c175644 h2{font-size:1.15rem;letter-spacing:-.035em}
-    .c8b6853{padding:.25rem .65rem;border-radius:var(--radius);background:color-mix(in srgb,var(--accent) 10%,var(--surface));color:var(--accent);font-size:.72rem;font-weight:600}
-    .c704331{display:grid;grid-template-columns:minmax(0,1fr) 38px minmax(0,1fr);align-items:center;gap:.6rem;padding:.65rem .8rem;border:1px solid color-mix(in srgb,var(--text) 9%,transparent);border-radius:var(--radius);background:color-mix(in srgb,var(--bg) 65%,var(--surface))}
-    .cf3e9af{min-width:0;display:flex;align-items:center;gap:.7rem}
-    .cf3e9af:last-child{justify-content:flex-end}
-    .c28700d{font-size:.76rem;color:var(--muted)}
-    .c462a39{min-width:0;display:flex;align-items:center;justify-content:center;max-width:100px;min-height:38px;overflow-wrap:anywhere}
-    .c462a39 img,.c462a39 svg{max-width:100%;max-height:38px;object-fit:contain}
-    .route-arrow{display:grid;place-items:center;width:34px;height:34px;border:1px solid color-mix(in srgb,var(--text) 10%,transparent);border-radius:50%;color:var(--accent);background:var(--surface)}
-    .c1f5955{margin-top:.9rem}
-    .c1cf438{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.55rem}
-    .c1cf438 label{font-size:.85rem;font-weight:600}
-    .cf02cf0{font-size:.74rem;color:var(--muted)}
-    .c18936f{display:flex;align-items:center;gap:.8rem;padding:.55rem .85rem;border:1px solid color-mix(in srgb,var(--text) 20%,transparent);border-radius:var(--radius);background:var(--bg);transition:border-color .2s,box-shadow .2s}
-    .c18936f:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent)}
-    .c18936f:has([aria-invalid="true"]){border-color:var(--accent)}
-    .c18936f input{width:100%;min-width:0;padding:0;border:0;outline:none;background:var(--bg);color:var(--text);font:500 1.55rem/1.2 var(--display);letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-    .c18936f input::placeholder{color:var(--muted)}
-    .c18936f>span{font-size:.8rem;color:var(--muted)}
-    .c43c06e{min-height:1.4em;margin-top:.5rem;font-size:.73rem;color:var(--muted)}
-    .c53a902{display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:.8rem}
-    .c53a902 .c1f5955{margin-top:0}
-    .ce826e1{position:relative}
-    .ce826e1::after{content:"";position:absolute;right:.95rem;top:50%;width:.5rem;height:.5rem;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
-    .c6d03e0{width:100%;padding:.55rem 2rem .55rem .85rem;border:1px solid color-mix(in srgb,var(--text) 20%,transparent);border-radius:var(--radius);background:var(--bg);color:var(--text);font:500 1rem/1.3 var(--display);letter-spacing:-.02em;appearance:none;-webkit-appearance:none;cursor:pointer}
-    .c6d03e0:focus-visible{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 12%,transparent)}
-    .ca352b1{margin-top:1rem;padding:.95rem;border:1px solid color-mix(in srgb,var(--accent) 17%,transparent);border-radius:var(--radius);background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 10%,var(--surface)),color-mix(in srgb,var(--accent) 3%,var(--surface)))}
-    .ccd0bef{font-size:.8rem;color:var(--muted)}
-    .caf6a33{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin:.2rem 0 .7rem}
-    .caf6a33 output{font:600 clamp(1.5rem,2.4vw,2.05rem)/1.15 var(--display);letter-spacing:-.05em;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
-    .caf6a33 span{font-size:.8rem;color:var(--muted)}
-    .cfe5914{display:grid;gap:.4rem;margin:0;padding-top:.7rem;border-top:1px solid color-mix(in srgb,var(--accent) 14%,transparent);font-size:.82rem}
-    .cfe5914>div{display:flex;justify-content:space-between;gap:1rem}
-    .cfe5914 dt{color:var(--muted)}
-    .cfe5914 dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
-    .c9c8dbc>.caf05a2{width:100%;margin-top:1.2rem}
-    .c7268c7{margin-top:1rem;font-size:.75rem;color:var(--muted)}
-    .c7268c7 summary{cursor:pointer;width:fit-content;text-underline-offset:.2em}
-    .c7268c7 summary:hover{color:var(--accent)}
-    .c7268c7 p{margin-top:.55rem;line-height:1.7}
-    .c58d3df{padding:2rem 2.25rem;border:1px solid color-mix(in srgb,var(--text) 10%,transparent);border-radius:var(--radius);background:var(--surface)}
-    .cf88daa{font:600 1.4rem/1.3 var(--display);letter-spacing:-.035em;margin-bottom:1.25rem}
-    .c15d779{overflow-x:auto}
-    .c11d5bf{width:100%;border-collapse:collapse;text-align:left;font-size:.9rem}
-    .c11d5bf caption{text-align:left;margin-bottom:1rem;color:var(--muted)}
-    .c11d5bf th,.c11d5bf td{padding:1rem 1.2rem;border-bottom:1px solid color-mix(in srgb,var(--text) 8%,transparent);vertical-align:top}
-    .c11d5bf th:first-child,.c11d5bf td:first-child{padding-left:0}
-    .c11d5bf th:last-child,.c11d5bf td:last-child{padding-right:0}
-    .c11d5bf th{font-weight:600;color:var(--text)}
-    .c11d5bf td{color:var(--muted)}
-    .c11d5bf tbody tr:last-child>*{border-bottom:0}
-    .c11d5bf thead{background:color-mix(in srgb,var(--accent) 5%,var(--surface))}
-    .ce6e6ad{max-width:820px;margin:4.5rem auto}
-    .c4f8e82{margin-block:0 3rem;padding-bottom:2.75rem;border-bottom:1px solid color-mix(in srgb,var(--text) 10%,transparent)}
-    .cad4ef8{margin:0 0 1.2rem;font:600 clamp(1.65rem,3vw,2.25rem)/1.2 var(--display);letter-spacing:-.04em}
-    .c5f2653{color:var(--muted);line-height:1.9;overflow-wrap:anywhere}
-    .c5f2653 p+p{margin-top:1.1rem}
-    .c5f2653 h3{margin:1.8rem 0 .7rem;font-size:1.25rem;line-height:1.4;color:var(--text)}
-    .c5f2653 strong{color:var(--text);font-weight:600}
-    .c5f2653 ul,.c5f2653 ol{padding-left:1.4rem;margin-block:1.2rem}
-    .c5f2653 li+li{margin-top:.55rem}
-    .c5f2653 li::marker{color:var(--accent)}
-    .c5f2653 blockquote{margin:1.5rem 0;padding:1rem 1.4rem;border-left:3px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;background:color-mix(in srgb,var(--accent) 6%,var(--surface));color:var(--text)}
-    .c42b8cd{margin-block:.8rem;border:1px solid color-mix(in srgb,var(--text) 12%,transparent);border-radius:var(--radius);background:var(--surface);overflow:hidden}
-    .cf434d6{position:relative;cursor:pointer;padding:1.2rem 3.3rem 1.2rem 1.35rem;list-style:none;font:500 1.05rem/1.5 var(--display);color:var(--text)}
-    .cf434d6::-webkit-details-marker{display:none}
-    .cf434d6::after{content:"+";position:absolute;right:1.35rem;top:1.15rem;color:var(--accent);font-size:1.3rem}
-    .c42b8cd[open]>.cf434d6::after{content:"−"}
-    .c42b8cd[open]{border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
-    .cf434d6:focus-visible{outline-offset:-5px;border-radius:var(--radius)}
-    .cd3d80b{padding:0 1.35rem 1.35rem;color:var(--muted);font-size:.95rem;line-height:1.85;overflow-wrap:anywhere}
-    .cd3d80b p+p{margin-top:.8rem}
-    .c39456c{padding:2rem 2.25rem;border-radius:var(--radius);background:color-mix(in srgb,var(--surface) 75%,var(--bg));border:1px solid color-mix(in srgb,var(--text) 8%,transparent)}
-    .cc2b450{margin:0;padding-left:1.2rem;color:var(--muted);font-size:.86rem}
-    .c4e4017{padding:.35rem 0 .35rem .3rem;overflow-wrap:anywhere}
-    .c4e4017::marker{color:var(--muted)}
-    .c4e4017 a{color:var(--text);text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent)}
-    .c4e4017 a:hover{color:var(--accent)}
-    .c11b7c0{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:3rem;padding-block:1.7rem 2rem;border-top:1px solid color-mix(in srgb,var(--text) 10%,transparent);color:var(--muted);font-size:.78rem}
-    .c673db3{font:600 .95rem/1.4 var(--display);color:var(--text)}
-    @media(min-width:1400px){.cf63f7f{padding-block:2.75rem 4rem}}
-    @media(max-width:900px){.cf63f7f{gap:2rem;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.c9c8dbc{padding:1.25rem}.c704331{padding:.8rem}.cf3e9af{flex-direction:column;gap:.25rem}.cf3e9af:last-child{flex-direction:column-reverse}h1{font-size:clamp(2.5rem,5.5vw,4rem)}}
-    @media(max-width:720px){.ce55d14{width:calc(100% - 40px)}.cac1e69{min-height:78px;gap:1rem}.cca6a18{gap:1rem}.cca6a18>.c18a4cd{display:none}.cf63f7f{grid-template-columns:minmax(0,1fr);padding-block:2.75rem 3rem;gap:2.5rem}.c43e3fe{max-width:560px}h1{font-size:clamp(2.6rem,9vw,4rem)}.c8f5547{font-size:1rem}.c9c8dbc{width:100%;max-width:520px;justify-self:center;padding:1.5rem}.cf3e9af,.cf3e9af:last-child{flex-direction:row}.c58d3df,.c39456c{padding:1.5rem}.ce6e6ad{margin-block:3rem}.c11d5bf th,.c11d5bf td{padding:.85rem .75rem}.c4f8e82{margin-bottom:2rem;padding-bottom:2rem}.c11b7c0{margin-top:2rem}}
-    @media(max-width:380px){.ce55d14{width:calc(100% - 28px)}.c9c8dbc{padding:1rem}.cd70629{font-size:1.05rem}.cca6a18 .c31fb49{padding:.55rem .7rem}.cf3e9af,.cf3e9af:last-child{flex-direction:column}.cf3e9af:last-child{flex-direction:column-reverse}.c58d3df,.c39456c{padding:1.1rem}.cfe5914{font-size:.76rem}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
-  </style>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Staking WETH — unwrap to ETH, then stake or get an LST</title>
+<meta name="description" content="Staking WETH explained for ETH holders: unwrap WETH 1:1 to ETH, then stake natively or through liquid staking. Compare steps, gas and risks before you sign.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#f8f4f6">
+<link rel="canonical" href="https://staking-weth.github.io/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Staking WETH"><meta property="og:title" content="Staking WETH — unwrap to ETH, then stake or get an LST"><meta property="og:description" content="Staking WETH explained for ETH holders: unwrap WETH 1:1 to ETH, then stake natively or through liquid staking. Compare steps, gas and risks before you sign."><meta property="og:url" content="https://staking-weth.github.io/"><meta property="og:image" content="https://staking-weth.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Staking WETH — unwrap to ETH, then stake or get an LST"><meta name="twitter:description" content="Staking WETH explained for ETH holders: unwrap WETH 1:1 to ETH, then stake natively or through liquid staking. Compare steps, gas and risks before you sign."><meta name="twitter:image" content="https://staking-weth.github.io/og-image.png">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://staking-weth.github.io/#organization","name":"Staking WETH","url":"https://staking-weth.github.io/","description":"Staking WETH explained for ETH holders: unwrap WETH 1:1 to ETH, then stake natively or through liquid staking. Compare steps, gas and risks before you sign.","logo":{"@type":"ImageObject","@id":"https://staking-weth.github.io/#logo","url":"https://staking-weth.github.io/icon.svg","caption":"Staking WETH"}},{"@type":"WebSite","@id":"https://staking-weth.github.io/#website","url":"https://staking-weth.github.io/","publisher":{"@id":"https://staking-weth.github.io/#organization"},"name":"Staking WETH"},{"@type":"WebPage","@id":"https://staking-weth.github.io/#webpage","url":"https://staking-weth.github.io/","publisher":{"@id":"https://staking-weth.github.io/#organization"},"name":"Staking WETH — unwrap to ETH, then stake or get an LST","isPartOf":{"@id":"https://staking-weth.github.io/#website"},"mainEntity":{"@id":"https://staking-weth.github.io/#app"},"breadcrumb":{"@id":"https://staking-weth.github.io/#breadcrumb"}},{"@type":"BreadcrumbList","@id":"https://staking-weth.github.io/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://staking-weth.github.io/"},{"@type":"ListItem","position":2,"name":"Staking WETH","item":"https://staking-weth.github.io/"}]},{"@type":"WebApplication","@id":"https://staking-weth.github.io/#app","url":"https://staking-weth.github.io/","publisher":{"@id":"https://staking-weth.github.io/#organization"},"name":"Staking WETH","applicationCategory":"FinanceApplication","operatingSystem":"Web","description":"Staking WETH explained for ETH holders: unwrap WETH 1:1 to ETH, then stake natively or through liquid staking. Compare steps, gas and risks before you sign.","isPartOf":{"@id":"https://staking-weth.github.io/#website"}},{"@type":"FAQPage","@id":"https://staking-weth.github.io/#faq","isPartOf":{"@id":"https://staking-weth.github.io/#webpage"},"about":{"@id":"https://staking-weth.github.io/#app"},"name":"Staking WETH FAQ","mainEntity":[{"@type":"Question","name":"Can you stake WETH directly?","acceptedAnswer":{"@type":"Answer","text":"Ethereum consensus staking uses native ETH, so WETH cannot be staked there as is. You either unwrap WETH to ETH first, or use a protocol that accepts WETH and unwraps it inside its own contracts."}},{"@type":"Question","name":"Do I lose value when I unwrap WETH before staking?","acceptedAnswer":{"@type":"Answer","text":"No. Unwrapping is a fixed 1:1 conversion with no slippage and no trading fee. The only cost is the gas for the transaction, paid in ETH."}},{"@type":"Question","name":"What is the difference between native and liquid staking of WETH?","acceptedAnswer":{"@type":"Answer","text":"Native staking puts ETH into the staking system under its rules, with no token returned. Liquid staking returns a liquid staking token that represents your position and can be held or moved, at the cost of added smart contract risk."}},{"@type":"Question","name":"Do I need ETH if I only hold WETH?","acceptedAnswer":{"@type":"Answer","text":"Yes. Gas on Ethereum is paid in native ETH, so you need some ETH to unwrap, approve or stake. WETH cannot pay for gas."}},{"@type":"Question","name":"Do I need to approve WETH before staking?","acceptedAnswer":{"@type":"Answer","text":"Unwrapping WETH does not need a separate approval. A protocol that takes WETH directly usually needs a one-time ERC-20 allowance first, which is an extra transaction with its own gas."}},{"@type":"Question","name":"Are staking rewards guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. Rewards depend on the staking system and, for liquid staking, on the protocol and any fee it takes. Validator penalties, smart contract bugs and LST price moves can all reduce what you end up with."}}]}]}
+</script>
+<style>
+@font-face{font-family:'Inter';src:url('assets/inter.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Space Grotesk';src:url('assets/space-grotesk.woff2') format('woff2');font-weight:500 700;font-display:swap}
+:root{
+ --bg:#f8f4f6;--card:#fff;--ink:#1f1219;--muted:#737b88;--faint:#aeb4bf;
+ --line:#f0e8ec;--line-2:#e6dce2;--panel:#f9f6f8;--panel-2:#f2ebef;
+ --accent:#d81b7a;--accent-hover:#bd166a;--accent-ink:#b8166a;--accent-soft:#fce4f0;--accent-on:#ffffff;--promo:#fdeef5;--text-2:#4b5563;
+ --shadow:0 1px 2px rgba(13,17,28,.04),0 24px 56px -40px rgba(13,17,28,.24);--pico-bg:#fff;--pico-ring:rgba(13,17,28,.06);
+ --ease:cubic-bezier(.2,.7,.2,1);
+ --head:"Space Grotesk","Arial",sans-serif;--body:"Inter","Arial",sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;color:var(--ink);font:15px/1.6 var(--body);-webkit-font-smoothing:antialiased;overflow-x:hidden;background:var(--bg)}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 90% 60% at 50% -10%,rgba(255,46,155,.10),transparent 70%),radial-gradient(rgba(184,22,106,.06) 1px,transparent 1.6px) 0 0/20px 20px;-webkit-mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%);mask-image:linear-gradient(#000 0,rgba(0,0,0,.35) 60%,transparent 100%)}
+a{color:inherit;text-decoration:none}button{font-family:inherit;cursor:pointer;background:none;border:0;color:inherit}
+img{display:block;max-width:100%}
+h1,h2,h3{margin:0;font-family:var(--head);font-weight:500;letter-spacing:-.01em}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+
+.nav{display:flex;align-items:center;gap:24px;padding:16px 24px;max-width:1280px;margin:0 auto;width:100%}
+.brand{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;flex:0 0 auto}
+.brand img{width:28px;height:28px}
+.nlinks{display:flex;align-items:center;gap:20px}
+.nlinks a{font-size:14px;font-weight:500;color:var(--muted);white-space:nowrap;transition:color .16s var(--ease)}
+.nlinks a:hover{color:var(--ink)}
+.spacer{flex:1}
+main{flex:1}
+.chain{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 12px;border-radius:10px;background:var(--panel-2);font-weight:500;font-size:14px;color:var(--ink);transition:background-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.chain img{width:20px;height:20px;border-radius:50%}
+.chain:hover{background:var(--line-2)}
+.chain .cv{width:12px;height:12px;color:var(--muted)}
+.connect{display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:10px;background:var(--card);border:1px solid var(--line-2);color:var(--ink);font-weight:500;font-size:14px;transition:background-color .16s var(--ease),border-color .16s var(--ease);flex:0 0 auto;white-space:nowrap}
+.connect:hover{border-color:var(--faint);background:var(--panel)}
+
+.hero{display:flex;flex-direction:column;align-items:center;padding:32px 20px 48px}
+h1{font-size:clamp(36px,4.6vw,48px);line-height:1.08;letter-spacing:-.025em;text-align:center;color:var(--ink);margin:0 0 32px}
+
+.card{width:min(600px,100%);background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden}
+.tabs{display:flex;align-items:center;gap:4px;padding:20px 20px 16px}
+.tab{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:10px;font-weight:500;font-size:14px;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tab:hover{background:var(--panel-2);color:var(--ink)}
+.tab.on{background:var(--accent-soft);color:var(--accent-ink)}
+.tabs .sp{flex:1}
+.tabs .ic{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:background-color .16s var(--ease),color .16s var(--ease)}
+.tabs .ic:hover{background:var(--panel-2);color:var(--ink)}
+.tabs .ic svg{width:18px;height:18px}
+
+.promo{margin:0 20px;padding:32px;border-radius:12px;background:var(--promo);display:flex;align-items:center;gap:20px}
+.promo-txt{flex:1;min-width:0}
+.promo-h{font-family:var(--head);font-weight:500;font-size:clamp(22px,3.4vw,28px);line-height:1.2;letter-spacing:-.015em;color:var(--ink);margin:0 0 8px;text-wrap:balance}
+.promo-sub{font-size:15px;line-height:1.6;color:var(--text-2);margin:0;max-width:34ch}
+.promo-grid{flex:0 0 auto;display:grid;grid-template-columns:repeat(2,auto);gap:16px}
+.pico{width:52px;height:52px;border-radius:50%;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);display:grid;place-items:center;overflow:hidden}
+.pico img{width:100%;height:100%;object-fit:contain;display:block}
+.promo-flow{flex-direction:column;align-items:stretch;gap:24px}
+.promo-flow .promo-sub{max-width:44ch}
+.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.flow li{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;gap:4px}
+.flow li+li::before{content:"";position:absolute;top:22px;right:calc(50% + 30px);width:calc(100% - 52px);height:1px;background:var(--line-2)}
+.fi{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;overflow:hidden;background:var(--pico-bg);box-shadow:0 0 0 1px var(--pico-ring);color:var(--accent-ink)}
+.fi img{width:100%;height:100%;display:block}
+.fi svg{width:20px;height:20px}
+.fi.on{background:var(--accent);color:var(--accent-on);box-shadow:none}
+.flow b{margin-top:4px;font-weight:500;font-size:14px;color:var(--ink)}
+.flow small{font-size:13px;line-height:1.4;color:var(--muted)}
+.cta-wrap{padding:20px}
+.cta{width:100%;height:60px;border-radius:12px;background:var(--accent);color:var(--accent-on);font-weight:500;font-size:16px;transition:background-color .16s var(--ease),transform .12s var(--ease)}
+.cta:hover{background:var(--accent-hover)}
+.cta:active{transform:scale(.99)}
+@media(max-width:470px){.promo{flex-direction:column;align-items:flex-start}.promo-grid{grid-template-columns:repeat(4,auto)}.promo-sub{max-width:none}}
+
+.learn{max-width:720px;margin:48px auto 0;width:100%;padding:0 24px 72px}
+.learn-h{font-size:14px;font-weight:500;color:var(--muted);text-align:center;margin:0 0 12px}
+.lrow{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;align-items:flex-start}
+.lcard{flex:0 0 auto;background:transparent;border:1px solid var(--line-2);border-radius:10px;transition:background-color .16s var(--ease),border-color .16s var(--ease)}
+.lcard>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;font-weight:500;font-size:14px;color:var(--text-2)}
+.lcard>summary::-webkit-details-marker{display:none}
+.lcard:hover{border-color:var(--faint);background:var(--card)}.lcard:hover>summary{color:var(--ink)}
+.lcard .chev{width:6px;height:6px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);margin-top:-4px;flex-shrink:0;transition:transform .16s var(--ease)}
+.lcard[open]{order:9;flex:0 0 100%;min-width:0;background:var(--card);border-color:var(--line-2);border-radius:16px;margin-top:8px}
+.lcard[open]>summary{height:auto;padding:20px 24px 0;color:var(--muted);font-size:13px}
+.lcard[open] .chev{transform:rotate(225deg);margin-top:4px}
+.lbody{padding:4px 24px 24px;max-width:660px}
+.lbody h2{font-size:22px;line-height:1.3;color:var(--ink);margin:8px 0 4px}
+.lbody h3{font-size:15px;line-height:1.4;color:var(--ink);margin:20px 0 4px}
+.lbody p{margin:0;font-size:15px;line-height:1.7;color:var(--text-2)}
+.lbody p+p{margin-top:8px}
+.lbody ul,.lbody ol{margin:8px 0 0;padding-left:20px}
+.lbody li{font-size:15px;line-height:1.7;color:var(--text-2);margin-bottom:4px}
+.lbody a{color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+.lbody strong,.lbody b{color:var(--ink);font-weight:500}
+.lbody .tbl{overflow-x:auto;margin:16px 0 4px}
+.lbody table{width:100%;min-width:420px;border-collapse:collapse;font-size:14px}
+.lbody caption{text-align:left;color:var(--muted);font-size:13px;margin-bottom:8px}
+.lbody th,.lbody td{text-align:left;padding:8px 12px;border:1px solid var(--line-2);vertical-align:top;line-height:1.45}
+.lbody thead th{background:var(--panel);color:var(--ink);font-weight:500}
+.lbody tbody th{background:var(--panel);color:var(--muted);white-space:nowrap;font-weight:500}
+.lbody td{color:var(--text-2)}
+.lfaq h3{margin-top:16px;font-size:16px}
+
+footer{border-top:1px solid var(--line-2);background:var(--card)}
+.foot{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding:20px 24px 24px;color:var(--muted);font-size:13px}
+.foot a{color:var(--muted);transition:color .16s var(--ease)}.foot a:hover{color:var(--ink)}.foot .sep{color:var(--faint)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);background:var(--ink);color:var(--bg);border-radius:12px;padding:12px 16px;font-size:13px;box-shadow:0 16px 40px -16px rgba(13,17,28,.5);z-index:60;opacity:0;visibility:hidden;transition:opacity .2s var(--ease),transform .2s var(--ease),visibility .2s;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+@media(max-width:1120px){.nlinks{display:none}}
+@media(max-width:720px){.chain span{display:none}.chain{padding:0 8px;gap:4px}}
+@media(max-width:560px){
+  .nav{padding:12px 16px;gap:8px}
+  .brand{font-size:16px}
+  .brand img{width:24px;height:24px}
+  .chain{height:36px;padding:0 8px;gap:4px}
+  .chain span{display:none}
+  .connect{height:36px;padding:0 12px;font-size:13px}
+  .hero{padding:24px 16px 40px}
+  .tabs{padding:16px 16px 12px}.promo{margin:0 16px;padding:24px}.cta-wrap{padding:16px}.cta{height:56px}
+  .learn{margin-top:40px;padding:0 16px 56px}
+}
+</style>
+<link rel="prerender" href="/dashboard/">
+<link rel="prefetch" href="/dashboard/" as="document">
+<link rel="preload" href="/dashboard/" as="document">
 </head>
 <body>
-  <a class="cda1da0" href="#content">Skip to content</a>
-  <div class="ce55d14">
-    <nav class="cac1e69" aria-label="Primary navigation">
-      <a class="cd70629" href="#" aria-label="Staking guide home">
-        <span class="c1b9c03" aria-hidden="true"><svg width="23" height="23" viewBox="0 0 24 24" fill="none"><path d="M5 19V11a7 7 0 0 1 14 0v8M9 19v-8a3 3 0 0 1 6 0v8" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round"/></svg></span>
-        Staking guide
-      </a>
-      <div class="cca6a18">
-        <a class="c18a4cd" href="#key-facts">Key facts</a>
-        <a class="c18a4cd" href="#sources">Sources</a>
-        <a class="c31fb49" href="dashboard/">Stake <span aria-hidden="true">↗</span></a>
-      </div>
-    </nav>
-    <div class="cabb095"><nav class="c88a227" aria-label="Breadcrumb"><a href="dashboard/">Home</a> <span>/</span> <span>Staking</span> <span>/</span> <span>Staking WETH</span></nav></div>
-    <section class="cf63f7f" aria-labelledby="hero-heading">
-      <div class="c43e3fe">
-        <span class="c92b8a3">Staking calculator</span>
-        <h1 id="hero-heading">Staking <em>WETH</em>.</h1>
-        <p class="c8f5547">Staking WETH is a slightly misleading phrase, and understanding why is the first step to doing it well. WETH (Wrapped Ether) is an ERC-20 token pegged 1:1 to ETH, built so Ether can move through smart contracts that only understand the ERC-20 standard — and no validator set accepts an ERC-20 token directly for consensus staking. So earning a return on WETH means choosing one of two real paths: unwrap it back to native ETH and stake that ETH, natively or through a liquid staking token, or leave it wrapped and put it to work inside DeFi, lending it out or supplying it to a pool. Both paths keep custody on-chain in your own wallet; neither involves handing WETH to a validator directly.</p>
-        <a class="caf05a2" href="dashboard/">Stake <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <p class="c301593">Set the amount and APY. Pick a period. See the rewards.</p>
-      </div>
-      <aside class="c9c8dbc" aria-labelledby="calculator-heading">
-        <div class="c175644">
-          <h2 id="calculator-heading">Your staking rewards</h2>
-          <span class="c8b6853">Rewards</span>
-        </div>
-        <div class="c704331" aria-label="Staked asset">
-          <div class="cf3e9af"><span class="c462a39"><img src="assets/tokens/eth.svg" alt="Ethereum" width="28" height="28"></span><span class="c28700d">Staked asset</span></div>
-        </div>
-        <div class="c1f5955">
-          <div class="c1cf438"><label for="amount">Amount staked</label><span class="cf02cf0">Your deposit</span></div>
-          <div class="c18936f"><input id="amount" type="text" inputmode="decimal" value="1000" autocomplete="off" spellcheck="false" maxlength="24" aria-describedby="amount-help" aria-invalid="false"><span>units</span></div>
-          <p id="amount-help" class="c43c06e">Enter an amount from 1 to 1,000,000 units.</p>
-        </div>
-        <div class="c53a902">
-          <div class="c1f5955">
-            <div class="c1cf438"><label for="apy">APY</label><span class="cf02cf0">Annual %</span></div>
-            <div class="c18936f"><input id="apy" type="text" inputmode="decimal" value="5" autocomplete="off" spellcheck="false" maxlength="6" aria-describedby="apy-help" aria-invalid="false"><span>%</span></div>
-          </div>
-          <div class="c1f5955">
-            <div class="c1cf438"><label for="period">Period</label><span class="cf02cf0">Horizon</span></div>
-            <div class="ce826e1"><select id="period" class="c6d03e0"><option value="0.0833">1 month</option><option value="0.5">6 months</option><option value="1" selected>1 year</option><option value="3">3 years</option></select></div>
-          </div>
-        </div>
-        <p id="apy-help" class="c43c06e">Rewards compound monthly at the APY you enter.</p>
-        <div class="ca352b1" aria-live="polite" aria-atomic="true">
-          <p class="ccd0bef">Estimated rewards</p>
-          <div class="caf6a33"><output id="received" for="amount">51.16</output><span>units</span></div>
-          <dl class="cfe5914">
-            <div><dt>Balance at end</dt><dd><output id="total" for="amount">1,051.16</output> units</dd></div>
-            <div><dt>APY used</dt><dd><output id="apyout" for="amount">5.00%</output></dd></div>
-          </dl>
-        </div>
-        <a class="caf05a2" href="dashboard/">Stake <svg aria-hidden="true" width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m-6-6 6 6-6 6" stroke="var(--accent-ink)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-        <details class="c7268c7">
-          <summary>How the estimate works</summary>
-          <p>Rewards compound monthly: the balance at the end equals the amount staked times (1 + APY/12) raised to the number of months in the period, and the estimated rewards are that balance minus your deposit. The APY you enter is the annual rate; actual rates vary with the network and validator.</p>
-        </details>
-        <noscript><p class="c43c06e">Enable JavaScript to calculate a different amount.</p></noscript>
-      </aside>
-    </section>
-    <section id="key-facts" class="c58d3df" aria-labelledby="facts-heading">
-      <h2 id="facts-heading" class="cf88daa">Key facts</h2>
-      <div class="c15d779"><table class="c11d5bf"><tbody><tr><th scope="row">Asset</th><td>WETH — ERC-20 wrapper for ETH</td></tr>
-<tr><th scope="row">Peg</th><td>1:1 with ETH, always redeemable</td></tr>
-<tr><th scope="row">Native staking</th><td>Not possible with WETH directly</td></tr>
-<tr><th scope="row">Path 1</th><td>Unwrap to ETH, stake natively or via LST</td></tr>
-<tr><th scope="row">Path 2</th><td>Supply WETH to lending markets or liquidity pools</td></tr>
-<tr><th scope="row">Custody</th><td>Self-custody — your wallet, your keys</td></tr></tbody></table></div>
-    </section>
-    <main id="content" class="ce6e6ad">
-      <section class="c4f8e82"><h2 class="cad4ef8">What Staking WETH Actually Means</h2><div class="c5f2653"><strong>Staking WETH means earning yield on wrapped Ether, and because WETH itself cannot be deposited into Ethereum's validator set, that yield comes from one of two routes: converting back to ETH to stake it, or deploying WETH inside a DeFi protocol that pays a lending or trading return.</strong> The confusion is understandable — ETH staking is widely discussed, and WETH looks and spends like ETH in almost every DeFi interface. But the <a href="https://ethereum.org/en/staking/" rel="nofollow noopener" target="_blank">Ethereum staking</a> process is built around native ETH deposits to run a validator, or smaller amounts pooled through a liquid staking token. WETH exists purely so ETH can satisfy the ERC-20 interface that most DeFi contracts expect.<h3>Why WETH exists at all</h3>Ether predates the ERC-20 token standard, so it does not natively implement the functions — approve, transferFrom, balanceOf — that DeFi contracts rely on. Wrapping solves that mismatch: you deposit ETH into the WETH contract and receive an equal amount of WETH back, a token that behaves like any other ERC-20 and can be swapped, lent or pooled.<h3>The 1:1 relationship never changes</h3>One WETH is always redeemable for exactly one ETH, and the reverse holds too. The <a href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="nofollow noopener" target="_blank">WETH contract on Etherscan</a> shows this as a simple deposit-and-withdraw mechanism with no fee and no slippage, so converting between the two forms is not a trade in the usual sense.<h3>What Staking WETH is not</h3>It is not sending WETH to a validator, not a special wrapped-staking product, and not something you do by simply holding the token. Any site claiming a one-click "stake WETH directly" button is routing your tokens through one of the two real mechanisms described below, usually an unwrap-and-stake flow or a DeFi deposit.</div></section>
-<section class="c4f8e82"><h2 class="cad4ef8">Path One: Unwrap and Stake Native ETH</h2><div class="c5f2653">The first path to Staking WETH indirectly is to convert it back to ETH and stake that ETH through Ethereum's own consensus mechanism. Because the 1:1 peg is enforced by the contract itself, unwrapping costs only gas — there is no market risk in that step. Once you hold native ETH, two staking routes are available depending on how much capital and technical setup you want to commit.<h3>Running or delegating to a native validator</h3>Running a solo validator requires 32 ETH and infrastructure that stays online continuously, since downtime and faulty behavior are penalized. Few individuals Staking WETH this way go solo; most either join a staking pool or delegate through an exchange, trading some yield for simplicity.<h3>Liquid staking tokens (LSTs)</h3>Depositing ETH into a liquid staking protocol mints a receipt token that represents your staked position and accrues rewards automatically, while remaining liquid enough to use elsewhere in DeFi. This is the more common route for smaller holders, since it needs no minimum validator amount and no hardware, and it is the closest DeFi equivalent to traditional staking.</div></section>
-<section class="c4f8e82"><h2 class="cad4ef8">Path Two: Put WETH to Work Without Unwrapping</h2><div class="c5f2653">The second path skips the unwrap step entirely and earns a return on WETH as it sits, in its wrapped form, inside DeFi protocols. This yield is not consensus-layer staking at all — it is lending interest or trading-fee income — but for many holders it is the more convenient way of Staking WETH because it requires no conversion and no validator exposure.<h3>Lending WETH on Aave</h3>Supplying WETH to a money market such as <a href="https://docs.aave.com/" rel="nofollow noopener" target="_blank">Aave</a> earns interest paid by borrowers who post collateral to draw against it. The rate floats with supply and demand for ETH-denominated borrowing, so it moves with market conditions rather than following a fixed validator reward schedule, and your WETH stays withdrawable at any time liquidity allows.<h3>Supplying WETH to liquidity pools</h3>Pairing WETH with a stablecoin or another token in an automated market maker earns a share of trading fees instead of interest. This route carries impermanent loss risk that lending does not, since the pool's two assets can drift apart in value, but it can pay more during periods of high trading volume — activity you can check across protocols on <a href="https://defillama.com/" rel="nofollow noopener" target="_blank">DefiLlama</a>.</div></section>
-<section class="c4f8e82"><h2 class="cad4ef8">Comparing the Two Staking WETH Paths</h2><div class="c5f2653">Neither path is strictly better; they trade off differently on where the yield comes from, how much it moves around, and what you are exposed to while earning it. The table below lines up the two approaches to Staking WETH side by side.<table><thead><tr><th>Path</th><th>Where the yield comes from</th><th>Main risk</th></tr></thead><tbody><tr><td>Unwrap & stake ETH (native/LST)</td><td>Consensus-layer validator rewards</td><td>Smart-contract risk (LST) or lock-up (native)</td></tr><tr><td>Lend WETH on Aave</td><td>Borrower interest, floating with demand</td><td>Protocol risk, variable rate</td></tr><tr><td>Supply WETH to an LP</td><td>Trading fees from swaps</td><td>Impermanent loss, protocol risk</td></tr></tbody></table></div></section>
-<section class="c4f8e82"><h2 class="cad4ef8">Calculating Rewards When Staking WETH</h2><div class="c5f2653">Whichever path you pick, the math behind the reward is the same compounding calculation: an amount, an annual percentage yield, and a period held. Enter the WETH amount you are putting to work, the APY quoted by the staking route, lending market or pool, and a time horizon, and the calculator below projects what that position could grow into — useful for comparing a native staking APY against an Aave supply rate or an LP's fee yield before committing any funds.<ul><li>Decide which path fits your goals — native/LST staking for steadier validator rewards, or DeFi lending and LPs for floating, more liquid returns.</li><li>Check the current APY for your chosen route; rates for lending and LPs change with market demand far more than validator rewards do.</li><li>Enter your WETH amount, the quoted APY and your intended holding period into the rewards calculator.</li><li>Review the projected total against the risks in the comparison table, especially impermanent loss if an LP is involved.</li><li>Unwrap to ETH first only if the native/LST path is your choice; leave it as WETH for the Aave or liquidity-pool routes.</li><li>Re-check the rate periodically — DeFi yields are not fixed the way a validator's base reward schedule is.</li></ul></div></section>
-<section class="c4f8e82"><h2 class="cad4ef8">Risks and Custody When Staking WETH</h2><div class="c5f2653">Across both paths, custody stays with you: unwrapping is a self-custodial contract call, and depositing into Aave or a pool is a direct, non-custodial interaction with the protocol's contracts rather than a transfer to a third party. The risks differ by path. Native and LST staking carry slashing or depegging risk for more predictable rewards; lending and liquidity-pool routes carry smart-contract and market risk for liquidity and no lock-up. <a href="https://en.wikipedia.org/wiki/Ethereum" rel="nofollow noopener" target="_blank">Ethereum's</a> proof-of-stake design underpins the first path, so reviewing a DeFi protocol's audit history before depositing is worth the few minutes it takes.<h3>Approvals and allowances</h3>Lending WETH or adding it to a pool requires an ERC-20 approval first. Grant only the amount you intend to deposit rather than an unlimited allowance, and revoke approvals you no longer use so an old permission can't be exploited later.<h3>The one rule that never changes</h3>No staking route, lending market or liquidity pool ever needs your seed phrase. A protocol that asks you to type or paste your recovery words is not Staking WETH on your behalf — it is attempting to take your wallet.</div></section>
-<section class="c4f8e82"><h2 class="cad4ef8">Choosing a Path for Staking WETH</h2><div class="c5f2653">If steady, consensus-backed rewards matter most, unwrap and stake through a native validator or an LST. If liquidity and the option to exit at any time matter more, keep it as WETH and supply it to Aave or a pool. Many holders split a position across both. Whichever mix you settle on, the comparison table and the calculator above give a consistent way to weigh the two before moving anything.</div></section><section class="c4f8e82 c772931" id="related"><h2 class="cad4ef8">Related tools</h2><div class="c5f2653"><ul><li><a href="https://staking-polygon-site.github.io/">Staking Polygon</a></li><li><a href="https://avalanche-liquid-staking.github.io/">How Avalanche Liquid Staking works</a></li><li><a href="https://liquidstaking.github.io/">Liquid Staking explained</a></li><li><a href="https://staking-pool.github.io/">Staking Pool guide</a></li><li><a href="https://stakestone-app.github.io/">StakeStone</a></li></ul></div></section>
-      <details class="c42b8cd"><summary class="cf434d6">Can I stake WETH directly, the way I'd stake ETH?</summary><div class="cd3d80b">No. WETH is an ERC-20 token and Ethereum's validator set only accepts native ETH deposits. Staking WETH means either unwrapping it to ETH first and staking that, or earning DeFi yield on the wrapped token through lending or a liquidity pool.</div></details>
-<details class="c42b8cd"><summary class="cf434d6">Does unwrapping WETH to ETH cost anything beyond gas?</summary><div class="cd3d80b">No. The WETH contract enforces a strict 1:1 peg with no fee and no slippage, so converting between WETH and ETH is a simple deposit-and-withdraw call that only costs network gas.</div></details>
-<details class="c42b8cd"><summary class="cf434d6">Which path for Staking WETH pays more — native staking or DeFi?</summary><div class="cd3d80b">It varies with market conditions. Native and LST staking rewards track the validator reward schedule and move slowly. Aave lending rates and liquidity-pool fees float with borrowing demand and trading volume, so they can pay more or less depending on the period.</div></details>
-<details class="c42b8cd"><summary class="cf434d6">Is lending WETH on Aave the same as staking it?</summary><div class="cd3d80b">Not technically. Lending pays interest from borrowers rather than a consensus-layer validator reward, but functionally it is the common way people describe Staking WETH without unwrapping it first.</div></details>
-<details class="c42b8cd"><summary class="cf434d6">What risk does a WETH liquidity pool add that lending doesn't?</summary><div class="cd3d80b">Impermanent loss. A liquidity pool holds two assets whose relative prices can drift, which can leave you with less value than simply holding WETH, even after collecting trading fees. Lending WETH on its own carries no such price-drift risk.</div></details>
-<details class="c42b8cd"><summary class="cf434d6">Do I keep custody of my WETH while earning on it?</summary><div class="cd3d80b">Yes, in both paths. Unwrapping is a self-custodial contract call, and depositing into Aave or a pool is a direct interaction with the protocol's smart contracts rather than a transfer to a custodian.</div></details>
-<details class="c42b8cd"><summary class="cf434d6">How do I compare the two Staking WETH paths before committing funds?</summary><div class="cd3d80b">Enter the same amount, APY and holding period into the rewards calculator for each route, then weigh the projected totals against the risk differences in the comparison table — validator or depeg risk on one side, smart-contract and impermanent-loss risk on the other.</div></details>
-    </main>
-    <section id="sources" class="c39456c" aria-labelledby="sources-heading">
-      <h2 id="sources-heading" class="cf88daa">Sources</h2>
-      <ul class="cc2b450"><li><a class="c4e4017" href="https://ethereum.org/en/staking/" rel="nofollow noopener" target="_blank">Ethereum.org — Staking</a></li>
-<li><a class="c4e4017" href="https://docs.aave.com/" rel="nofollow noopener" target="_blank">Aave Documentation</a></li>
-<li><a class="c4e4017" href="https://etherscan.io/token/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2" rel="nofollow noopener" target="_blank">WETH Token Contract — Etherscan</a></li>
-<li><a class="c4e4017" href="https://en.wikipedia.org/wiki/Ethereum" rel="nofollow noopener" target="_blank">Ethereum — Wikipedia</a></li></ul>
-    </section>
-    <footer class="c11b7c0">
-      <span class="c673db3">Staking guide</span>
-      <div>Updated Nov 06, 2026</div>
-    </footer>
-  </div>
-  <script>
-    (() => {
-      const amount = document.getElementById('amount');
-      const apy = document.getElementById('apy');
-      const period = document.getElementById('period');
-      const help = document.getElementById('amount-help');
-      const received = document.getElementById('received');
-      const total = document.getElementById('total');
-      const apyout = document.getElementById('apyout');
-      const format = new Intl.NumberFormat('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      let pending;
-      function num(el, min, max) {
-        const raw = el.value.trim();
-        const ok = /^(?:\d+(?:[.,]\d{1,4})?|[.,]\d{1,4})$/.test(raw);
-        const v = ok ? Number(raw.replace(',', '.')) : NaN;
-        return (Number.isFinite(v) && v >= min && v <= max) ? v : NaN;
-      }
-      function calculate() {
-        const value = num(amount, 1, 1000000);
-        const rate = num(apy, 0, 1000);
-        amount.setAttribute('aria-invalid', String(Number.isNaN(value)));
-        apy.setAttribute('aria-invalid', String(Number.isNaN(rate)));
-        if (Number.isNaN(value) || Number.isNaN(rate)) {
-          received.textContent = '—';
-          total.textContent = '—';
-          apyout.textContent = '—';
-          help.textContent = 'Enter an amount (1–1,000,000) and an APY (0–1,000%).';
-          return;
-        }
-        const years = Number(period.value) || 1;
-        const months = Math.max(1, Math.round(years * 12));
-        const monthly = rate / 100 / 12;
-        const endBalance = value * Math.pow(1 + monthly, months);
-        received.textContent = format.format(endBalance - value);
-        total.textContent = format.format(endBalance);
-        apyout.textContent = format.format(rate) + '%';
-        help.textContent = 'Enter an amount from 1 to 1,000,000 units.';
-      }
-      amount.addEventListener('input', () => { clearTimeout(pending); pending = setTimeout(calculate, 180); });
-      apy.addEventListener('input', () => { clearTimeout(pending); pending = setTimeout(calculate, 180); });
-      amount.addEventListener('blur', () => { clearTimeout(pending); calculate(); });
-      apy.addEventListener('blur', () => { clearTimeout(pending); calculate(); });
-      period.addEventListener('change', calculate);
-      calculate();
-    })();
-  </script>
-</body>
-</html>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-cv" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 6 5 5 5-5"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5c0 4.4 3 8.4 7 10 4-1.6 7-5.6 7-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-coins" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="9" cy="7" rx="5" ry="2.5"/><path d="M4 7v4c0 1.4 2.2 2.5 5 2.5s5-1.1 5-2.5V7"/><path d="M10 15.5c.6 1.2 2.6 2 5 2 2.8 0 5-1.1 5-2.5v-4c0-1.4-2.2-2.5-5-2.5"/><path d="M20 15v4c0 1.4-2.2 2.5-5 2.5s-5-1.1-5-2.5v-2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/><path d="M12 14.5v2"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol>
+<symbol id="i-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5s-6 6.4-6 10.5a6 6 0 0 0 12 0c0-4.1-6-10.5-6-10.5z"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+<symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="7" rx="2"/><rect x="4" y="13" width="16" height="7" rx="2"/><path d="M8 7.5h.01M8 16.5h.01"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 13a7.8 7.8 0 0 0 0-2l2-1.5-2-3.4-2.3 1a7.6 7.6 0 0 0-1.7-1L15 2.5h-4l-.4 2.6c-.6.3-1.2.6-1.7 1l-2.3-1-2 3.4L4.6 11a7.8 7.8 0 0 0 0 2l-2 1.5 2 3.4 2.3-1c.5.4 1.1.7 1.7 1l.4 2.6h4l.4-2.6c.6-.3 1.2-.6 1.7-1l2.3 1 2-3.4z"/></symbol>
+</defs></svg>
 
+<header class="nav">
+  <a class="brand" href="index.html" aria-label="Staking WETH home"><img src="icon.svg" alt=""><span>Staking WETH</span></a>
+  <nav class="nlinks" aria-label="Primary">
+    <a href="#overview">What is it</a>
+    <a href="#compare">WETH vs ETH</a>
+    <a href="#how">How to stake</a>
+    <a href="#fees">Fees &amp; gas</a>
+    <a href="#security">Security</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <span class="spacer"></span>
+  <a class="chain" href="/dashboard/" style="text-decoration:none"><img src="assets/net-ethereum.svg" alt=""><span>Ethereum</span><svg class="cv" aria-hidden="true"><use href="#i-cv"/></svg></a>
+  <a class="connect" href="/dashboard/" style="text-decoration:none">Connect wallet</a>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Staking WETH</h1>
+
+    <section class="card" aria-label="Staking WETH">
+      <div class="tabs">
+        <button class="tab on" type="button">Stake</button>
+        <button class="tab" type="button">Unwrap</button>
+        <span class="sp"></span>
+        <button class="ic gear" type="button" aria-label="Settings" data-toast="Staking settings are disabled in this demo."><svg aria-hidden="true"><use href="#i-gear"/></svg></button>
+      </div>
+
+      <div class="promo promo-flow">
+        <div class="promo-txt">
+          <h2 class="promo-h">Stake your WETH via unwrapped ETH</h2>
+          <p class="promo-sub">Unwrap WETH 1:1 to ETH, then stake it. You sign every step.</p>
+        </div>
+        <ol class="flow">
+          <li><span class="fi"><img src="assets/weth-round.svg" alt=""></span><b>WETH</b><small>ERC-20, 1:1 with ETH</small></li>
+          <li><span class="fi"><img src="assets/eth.svg" alt=""></span><b>ETH</b><small>Unwrapped for gas only</small></li>
+          <li><span class="fi on"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><b>Stake</b><small>Natively or liquid</small></li>
+        </ol>
+      </div>
+
+      <div class="cta-wrap"><a class="cta" href="/dashboard/" style="display:flex;align-items:center;justify-content:center;text-decoration:none">Stake WETH</a></div>
+    </section>
+  </section>
+
+  <section class="learn" id="learn">
+    <p class="learn-h">Learn about staking WETH</p>
+    <div class="lrow">
+      <details class="lcard" name="learn" id="overview"><summary><span>What is it</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What staking WETH means</h2>
+<p><strong>Staking WETH</strong> is not a single action on Ethereum. Consensus staking uses native ETH, and WETH is the ERC-20 wrapper of ETH that holds a fixed 1:1 value, so WETH has to become ETH somewhere along the way.</p>
+<h3>Two common routes</h3>
+<p>The first route is manual: unwrap WETH to ETH, then stake that ETH natively or deposit it into a liquid staking protocol. The second is to use a protocol that accepts WETH directly and does the unwrapping and staking inside its own contracts.</p>
+<h3>What you get back</h3>
+<p>Native staking leaves your ETH locked in the staking system under the protocol rules. Liquid staking returns a liquid staking token (LST) that represents your stake and can be held, moved or used elsewhere. Read the <a href="https://ethereum.org/en/staking/" target="_blank" rel="nofollow noopener">Ethereum staking overview</a> for how consensus staking works.</p></div></details>
+
+      <details class="lcard" name="learn" id="compare"><summary><span>WETH vs ETH</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Staking from WETH or from ETH</h2>
+<p>The staking step itself is the same. What differs is the preparation, because WETH is a token and ETH is the native coin.</p>
+<div class="tbl"><table><caption>Staking from WETH (unwrap first) vs staking from ETH directly</caption><thead><tr><th scope="col"></th><th scope="col">From WETH (unwrap first)</th><th scope="col">From ETH directly</th></tr></thead><tbody><tr><th scope="row">Steps</th><td>unwrap, then stake</td><td>stake</td></tr><tr><th scope="row">Approvals</th><td>none to unwrap; a WETH approval only if a protocol pulls WETH directly</td><td>none, because ETH is not an ERC-20 token</td></tr><tr><th scope="row">Gas</th><td>one extra transaction for the unwrap, plus staking</td><td>staking only</td></tr><tr><th scope="row">Price effect</th><td>none, unwrapping is fixed 1:1</td><td>none</td></tr></tbody></table></div>
+<h3>Which to pick</h3>
+<p>If you already hold ETH, stake it as is. If your funds sit in WETH, unwrapping first costs only gas and keeps the amount unchanged.</p></div></details>
+
+      <details class="lcard" name="learn" id="how"><summary><span>How to stake</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>How to stake WETH step by step</h2>
+<h3>Before you start</h3>
+<p>Decide between native staking and liquid staking. Native staking has its own requirements and exit rules, while liquid staking is a smart contract deposit that returns an LST.</p>
+<h3>Steps</h3>
+<ol>
+<li>Connect your own wallet and confirm it holds the WETH you plan to stake, plus a little ETH for gas.</li>
+<li>Unwrap WETH to ETH. This is a 1:1 conversion that costs only gas.</li>
+<li>Choose how to stake: natively, or through a liquid staking route that returns an LST.</li>
+<li>Review the amount, the contract you are interacting with and the estimated gas, then sign.</li>
+<li>After confirmation, check your wallet for the staked position or the LST you received.</li>
+</ol>
+<p>If a protocol accepts WETH directly, the unwrap step happens inside it, but you still sign each transaction.</p></div></details>
+
+      <details class="lcard" name="learn" id="fees"><summary><span>Fees &amp; gas</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>What staking WETH costs</h2>
+<h3>Gas</h3>
+<p>Unwrapping and staking are separate Ethereum transactions, and gas is always paid in native ETH. See how <a href="https://ethereum.org/en/developers/docs/gas/" target="_blank" rel="nofollow noopener">gas works</a>.</p>
+<h3>Unwrapping</h3>
+<p>Turning WETH into ETH has no trading fee and no slippage, because it is a fixed 1:1 conversion rather than a market swap. You pay gas only.</p>
+<h3>Staking costs</h3>
+<p>Liquid staking protocols and staking services may take a fee from rewards, and an LST can trade at a slightly different price from ETH on the market. These costs are shown by the protocol you use, not by this interface.</p>
+<h3>Keep ETH for gas</h3>
+<p>Holding only WETH leaves you unable to pay for transactions. Keep some native ETH in the wallet.</p></div></details>
+
+      <details class="lcard" name="learn" id="security"><summary><span>Security</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody"><h2>Risks and safety when staking</h2>
+<h3>Non-custodial by design</h3>
+<p>You connect your own wallet and sign every transaction yourself. This interface prepares the steps. It never holds your funds or keys.</p>
+<h3>Risks by step</h3>
+<ul>
+<li>Unwrapping: low risk beyond gas, but verify the WETH contract address because fake WETH tokens exist.</li>
+<li>Native staking: funds are locked under protocol rules, rewards are not guaranteed, and penalties for validator faults apply.</li>
+<li>Liquid staking: smart contract bugs, an LST price that drifts from ETH, and dependence on the operators behind the protocol.</li>
+<li>Approvals: grant only what you need and revoke allowances you no longer use.</li>
+</ul>
+<p>Smart contracts can hold bugs, so risk is never zero, and staking is not a savings product.</p></div></details>
+
+      <details class="lcard" name="learn" id="faq"><summary><span>FAQ</span><span class="chev" aria-hidden="true"></span></summary><div class="lbody lfaq"><h2>Staking WETH FAQ</h2>
+<h3>Can you stake WETH directly?</h3>
+<p>Ethereum consensus staking uses native ETH, so WETH cannot be staked there as is. You either unwrap WETH to ETH first, or use a protocol that accepts WETH and unwraps it inside its own contracts.</p>
+<h3>Do I lose value when I unwrap WETH before staking?</h3>
+<p>No. Unwrapping is a fixed 1:1 conversion with no slippage and no trading fee. The only cost is the gas for the transaction, paid in ETH.</p>
+<h3>What is the difference between native and liquid staking of WETH?</h3>
+<p>Native staking puts ETH into the staking system under its rules, with no token returned. Liquid staking returns a liquid staking token that represents your position and can be held or moved, at the cost of added smart contract risk.</p>
+<h3>Do I need ETH if I only hold WETH?</h3>
+<p>Yes. Gas on Ethereum is paid in native ETH, so you need some ETH to unwrap, approve or stake. WETH cannot pay for gas.</p>
+<h3>Do I need to approve WETH before staking?</h3>
+<p>Unwrapping WETH does not need a separate approval. A protocol that takes WETH directly usually needs a one-time ERC-20 allowance first, which is an extra transaction with its own gas.</p>
+<h3>Are staking rewards guaranteed?</h3>
+<p>No. Rewards depend on the staking system and, for liquid staking, on the protocol and any fee it takes. Validator penalties, smart contract bugs and LST price moves can all reduce what you end up with.</p></div></details>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot"><span>&copy; 2026 Staking WETH</span><span class="sep">&middot;</span><a href="legal.html#privacy">Privacy</a><span class="sep">&middot;</span><a href="legal.html#terms">Terms</a><span class="sep">&middot;</span><span>Non-custodial &middot; WETH staking on Ethereum</span></div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+"use strict";
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+tabs.forEach(function(t){t.addEventListener('click',function(){tabs.forEach(function(x){x.classList.toggle('on',x===t);});});});
+
+var toast=document.getElementById('toast'),tT;
+function notify(m){toast.textContent=m;toast.classList.add('show');clearTimeout(tT);tT=setTimeout(function(){toast.classList.remove('show');},3000);}
+[].slice.call(document.querySelectorAll('[data-toast]')).forEach(function(b){b.addEventListener('click',function(){notify(b.getAttribute('data-toast'));});});
+
+function openHash(){var id=location.hash.slice(1);if(!id)return;var c=document.getElementById(id);if(c&&c.matches&&c.matches('.lcard[name="learn"]'))c.open=true;}
+window.addEventListener('hashchange',openHash);openHash();
+[].slice.call(document.querySelectorAll('.nlinks a')).forEach(function(a){a.addEventListener('click',function(){var c=document.getElementById(a.getAttribute('href').slice(1));if(c&&c.matches('.lcard'))c.open=true;});});
+})();
+</script>
+</body></html>
